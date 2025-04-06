@@ -14,7 +14,7 @@ from sd3_infer import load_models
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Initialize the model here
-    app.state.inferencer = load_models()
+    app.state.inferencer = load_models(model_folder="/home/wanerevinita/sd3.5/models")
     print("✅ Model loaded and ready")
     yield
     # (Optional) Cleanup on shutdown
