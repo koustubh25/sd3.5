@@ -548,24 +548,14 @@ CONFIGS = {
 
 
 @torch.no_grad()
-def main(
-    prompt=PROMPT,
+def load_models(
     model=MODEL,
-    out_dir=OUTDIR,
-    postfix=None,
-    seed=SEED,
-    seed_type=SEEDTYPE,
     sampler=None,
     steps=None,
     cfg=None,
     shift=None,
-    width=WIDTH,
-    height=HEIGHT,
     controlnet_ckpt=None,
-    controlnet_cond_image=None,
     vae=VAEFile,
-    init_image=INIT_IMAGE,
-    denoise=DENOISE,
     skip_layer_cfg=False,
     verbose=False,
     model_folder=MODEL_FOLDER,
@@ -608,47 +598,4 @@ def main(
         text_encoder_device,
         verbose,
     )
-
-    if isinstance(prompt, str):
-        if os.path.splitext(prompt)[-1] == ".txt":
-            with open(prompt, "r") as f:
-                prompts = [l.strip() for l in f.readlines()]
-        else:
-            prompts = [prompt]
-
-    sanitized_prompt = re.sub(r"[^\w\-\.]", "_", prompt)
-    out_dir = os.path.join(
-        out_dir,
-        (
-            os.path.splitext(os.path.basename(model))[0]
-            + (
-                "_" + os.path.splitext(os.path.basename(controlnet_ckpt))[0]
-                if controlnet_ckpt is not None
-                else ""
-            )
-        ),
-        os.path.splitext(os.path.basename(sanitized_prompt))[0][:50]
-        + (postfix or datetime.datetime.now().strftime("_%Y-%m-%dT%H-%M-%S")),
-    )
-
-    os.makedirs(out_dir, exist_ok=False)
-
-    inferencer.gen_image(
-        prompts,
-        width,
-        height,
-        _steps,
-        _cfg,
-        _sampler,
-        seed,
-        seed_type,
-        out_dir,
-        controlnet_cond_image,
-        init_image,
-        denoise,
-        skip_layer_config,
-    )
-
-
-if __name__ == "__main__":
-    fire.Fire(main)
+    return inferencer

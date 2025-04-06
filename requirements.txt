@@ -5,8 +5,10 @@ torchvision
 numpy
 fire
 pillow
-numpy
+numpy==1.26.4
 einops
 sentencepiece
-protobuf
+protobuf==5.29.*
 webdataset
+fastapi
+uvicorn
