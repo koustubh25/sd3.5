@@ -265,7 +265,7 @@ class SD3Inferencer:
         load_tokenizers: bool = True,
     ):
         self.verbose = verbose
-        model = model_folder + "/" | model
+        model = model_folder + "/" + model
         print("Loading tokenizers...")
         # NOTE: if you need a reference impl for a high performance CLIP tokenizer instead of just using the HF transformers one,
         # check https://github.com/Stability-AI/StableSwarmUI/blob/master/src/Utils/CliplikeTokenizer.cs
