@@ -56,6 +56,7 @@ async def generate(req: GenerateRequest):
     sanitized_prompt = re.sub(r"[^\w\-\.]", "_", req.prompt)
     timestamp = datetime.datetime.now().strftime("_%Y-%m-%dT%H-%M-%S")
     output_path = os.path.join(req.out_dir, sanitized_prompt + timestamp)
+    print(output_path, flush=True)
     os.makedirs(output_path, exist_ok=True)
 
     app.state.inferencer.gen_image(
