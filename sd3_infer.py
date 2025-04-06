@@ -227,7 +227,7 @@ SEEDTYPE = "rand"
 # Actual model file path
 # MODEL = "models/sd3_medium.safetensors"
 # MODEL = "models/sd3.5_large_turbo.safetensors"
-MODEL = "models/sd3.5_large.safetensors"
+MODEL = "sd3.5_large.safetensors"
 # VAE model file path, or set None to use the same model file
 VAEFile = None  # "models/sd3_vae.safetensors"
 # Optional init image file path
@@ -265,6 +265,7 @@ class SD3Inferencer:
         load_tokenizers: bool = True,
     ):
         self.verbose = verbose
+        model = model_folder + "/" | model
         print("Loading tokenizers...")
         # NOTE: if you need a reference impl for a high performance CLIP tokenizer instead of just using the HF transformers one,
         # check https://github.com/Stability-AI/StableSwarmUI/blob/master/src/Utils/CliplikeTokenizer.cs
