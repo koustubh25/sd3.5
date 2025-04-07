@@ -71,7 +71,7 @@ async def generate(req: GenerateRequest):
         req.sampler,
         req.seed,
         req.seed_type,
-        req.out_dir,
+        output_path,
         req.controlnet_cond_image,
         req.init_image,
         req.denoise,
